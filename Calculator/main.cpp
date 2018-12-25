@@ -1,7 +1,7 @@
 #include "SFML/Graphics.hpp"
 
 int main() {
-	sf::RenderWindow window({ 1024, 769 }, "Calculator");
+	sf::RenderWindow window({ 1024, 769 }, "Calculator", sf::Style::Close | sf::Style::Titlebar);
 	window.setFramerateLimit(30);
 
 	while (window.isOpen())
