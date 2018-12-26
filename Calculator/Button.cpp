@@ -4,8 +4,8 @@
 
 Button::Button(sf::Vector2f position, sf::Vector2f buttonSize, sf::Font * font, std::string text)
 {
-	rectangle.setPosition(position);
 	rectangle.setSize(buttonSize);
+	rectangle.setPosition(position);
 	setFont(*font);
 	this->text.setString(text);
 	setCustomProperties();
@@ -34,7 +34,7 @@ void Button::setFont(sf::Font newFont)
 	centerText();
 }
 
-void Button::setTextSize(unsigned int size)
+void Button::setTextSize(unsigned size)
 {
 	 text.setCharacterSize(size); 
 	 centerText();
@@ -42,13 +42,14 @@ void Button::setTextSize(unsigned int size)
 
 void Button::centerText()
 {
+	
 	text.setOrigin(text.getLocalBounds().width / 2.0, text.getLocalBounds().height / 2.0);
 	text.setPosition(rectangle.getSize().x / 2, rectangle.getSize().y / 2);
 }
 
 void Button::setCustomProperties()
 {
-	setTextSize(20);
+	setTextSize(12);
 	setButtonOutline(2, sf::Color(100,100,100));
 	setButtonColor(sf::Color(200, 100, 100));
 	setBackgroundHoverColor(sf::Color(200, 100, 100));

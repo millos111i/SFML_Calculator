@@ -3,7 +3,10 @@
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/Font.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"
-class Button : sf::Drawable
+
+
+
+class Button : public sf::Drawable
 {
 public:
 	Button(sf::Vector2f position, sf::Vector2f buttonSize, sf::Font * font, std::string text);
@@ -23,7 +26,7 @@ private:
 	void setText(const std::string& text);
 	void setFont(const sf::Font font);
 	void setTextColorDefault(sf::Color color) { textColor = color; }
-	void setTextSize(unsigned int size);
+	void setTextSize(unsigned size);
 	void centerText();
 	void setCustomProperties();
 	void draw(sf::RenderTarget& target, sf::RenderStates states)const;
