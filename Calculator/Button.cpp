@@ -2,11 +2,11 @@
 
 
 
-Button::Button(sf::Vector2f position, sf::Vector2f buttonSize, sf::Font * font, std::string text)
+Button::Button(sf::Vector2f position, sf::Vector2f buttonSize, sf::Font & font, std::string text)
 {
 	rectangle.setSize(buttonSize);
 	rectangle.setPosition(position);
-	setFont(*font);
+	setFont(font);
 	this->text.setString(text);
 	setCustomProperties();
 }
@@ -28,11 +28,11 @@ void Button::setText(const std::string & newText)
 	centerText();
 }
 
-void Button::setFont(sf::Font newFont)
+void Button::setFont(const sf::Font &newFont)
 {
 	text.setFont(newFont);
-	centerText();
 }
+
 
 void Button::setTextSize(unsigned size)
 {
@@ -42,19 +42,27 @@ void Button::setTextSize(unsigned size)
 
 void Button::centerText()
 {
-	
-	text.setOrigin(text.getLocalBounds().width / 2.0, text.getLocalBounds().height / 2.0);
-	text.setPosition(rectangle.getSize().x / 2, rectangle.getSize().y / 2);
+	std::cout << "text get origin x = " << text.getOrigin().x << std::endl;
+	rectangle.setOrigin(rectangle.getSize().x, rectangle.getSize().y);
+	text.setOrigin(text.getLocalBounds().width / 2.0, text.getLocalBounds().height);
+	text.setPosition(rectangle.getPosition().x - rectangle.getSize().x / 2.0, rectangle.getPosition().y - rectangle.getSize().y / 2.0);
+	std::cout << "text position x = " << text.getPosition().x << std::endl;
+	std::cout << "text position y = " << text.getPosition().y << std::endl;
+	std::cout << "rectangle size x  =  " << rectangle.getSize().x << std::endl;
+	std::cout << "rectangle position x  =  " << rectangle.getPosition().x << std::endl;
+	std::cout << "test loc bounds width  =  " << text.getLocalBounds().width << std::endl;
+	std::cout << "text get origin x = " << text.getOrigin().x << std::endl;
+
 }
 
 void Button::setCustomProperties()
 {
-	setTextSize(12);
-	setButtonOutline(2, sf::Color(100,100,100));
-	setButtonColor(sf::Color(200, 100, 100));
+	setTextSize(22);
+	setButtonOutline(2, sf::Color::Red);
+	setButtonColor(sf::Color::Blue);
 	setBackgroundHoverColor(sf::Color(200, 100, 100));
 	setBackgroundClickedColor(sf::Color(200, 200, 100));
-	setTextColorDefault(sf::Color::Black );
+	setTextColorDefault(sf::Color::Blue );
 	
 }
 
@@ -62,4 +70,9 @@ void Button::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(rectangle);
 	target.draw(text);
+}
+
+void Button::update(sf::Event& e, sf::RenderWindow& window)
+{
+	
 }
