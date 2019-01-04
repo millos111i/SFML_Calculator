@@ -13,7 +13,7 @@ private:
 	Type myOperator;
 	sf::RectangleShape calculatorRectangle;
 	Button1 *sellectedButton;
-	std::vector<Button1> vButton;
+	Button1* myButtons[52];
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 };

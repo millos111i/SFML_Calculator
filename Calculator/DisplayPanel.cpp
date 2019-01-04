@@ -4,7 +4,7 @@
 
 DisplayPanel::DisplayPanel()
 {
-	rectangle.setSize(sf::Vector2f{ 508, 78 });
+	rectangle.setSize(sf::Vector2f{ 484, 78 });
 	rectangle.setFillColor(sf::Color::White);
 	font.loadFromFile("arial.ttf");
 	text.setFont(font);

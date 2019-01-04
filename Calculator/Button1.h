@@ -3,13 +3,14 @@
 #include <iostream>
 
 enum class Type {
-	Number, Operator, Equal, Other
+	Number, Operator, Equal, Other, Memory, Bracket, Pi, Delete, Ans, Comma
 };
 
 class Button1 : public sf::Drawable
 {
 public:
-	Button1(Type type, std::string character);
+	Button1(Type type, std::string character, sf::Vector2f size, sf::Vector2f position, std::string path);
+	Button1(Type type, std::string character, sf::Vector2f position, std::string path);
 	~Button1();
 	int getValue();
 	sf::FloatRect getRect() const;

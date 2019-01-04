@@ -7,7 +7,7 @@
 class AppController 
 {
 public:
-	AppController() : window({ 512, 360 }, "Calculator", sf::Style::Close | sf::Style::Titlebar), myCalculator(&window) {}
+	AppController() : window({ 488, 334 }, "Calculator", sf::Style::Close | sf::Style::Titlebar), myCalculator(&window) {}
 	~AppController();
 	void run();
 private:

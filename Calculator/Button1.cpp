@@ -1,10 +1,24 @@
 #include "Button1.h"
 
 
-Button1::Button1(Type type, std::string character) :value(0)
+Button1::Button1(Type type, std::string character, sf::Vector2f size, sf::Vector2f position, std::string path) :value(0), type(type)
 {
 	if (type == Type::Number) value = stoi(character);
 	else sText = character;
+	rectangle.setSize(size);
+	rectangle.setPosition(position);
+	buttonTexture.loadFromFile(path);
+	rectangle.setTexture(&buttonTexture);
+}
+
+Button1::Button1(Type type, std::string character, sf::Vector2f position, std::string path)
+{
+	if (type == Type::Number) value = stoi(character);
+	else sText = character;
+	rectangle.setSize(sf::Vector2f{ 52,40 });
+	rectangle.setPosition(position);
+	buttonTexture.loadFromFile(path);
+	rectangle.setTexture(&buttonTexture);
 }
 
 
