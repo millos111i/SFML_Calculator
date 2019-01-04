@@ -4,13 +4,10 @@
 
 AppController::~AppController()
 {
-	delete button;
 }
 
 void AppController::run()
 {
-	sf::Vector2f position(100, 100);
-	button = new Button1(position);
 	while (window.isOpen()){
 
 		sf::Event evnt;
@@ -25,6 +22,6 @@ void AppController::run()
 void AppController::render()
 {
 	window.clear();
-	window.draw(*button);
+	window.draw(myCalculator);
 	window.display();
 }

@@ -1,15 +1,19 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Button1.h"
+#include "Calculator.h"
+#include "DisplayPanel.h"
+
 class AppController 
 {
 public:
-	AppController() : window({ 512, 360 }, "Calculator", sf::Style::Close | sf::Style::Titlebar) {}
+	AppController() : window({ 512, 360 }, "Calculator", sf::Style::Close | sf::Style::Titlebar), myCalculator(&window) {}
 	~AppController();
 	void run();
 private:
 	sf::RenderWindow window;
 	void render();
-	Button1 *button;
+	Calculator myCalculator;
+	DisplayPanel myDisplay;
 };
 

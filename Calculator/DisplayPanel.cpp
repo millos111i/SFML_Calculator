@@ -4,14 +4,14 @@
 
 DisplayPanel::DisplayPanel()
 {
-	rectangle.setSize(sf::Vector2f{ 512, 80 });
+	rectangle.setSize(sf::Vector2f{ 508, 78 });
 	rectangle.setFillColor(sf::Color::White);
 	font.loadFromFile("arial.ttf");
 	text.setFont(font);
 	text.setString(std::string{ "cokolwiek" });
 	text.setFillColor(sf::Color::Black);
 	text.setCharacterSize(30);
-	text.setPosition(sf::Vector2f{ 130.0f, -5.f });
+	text.setPosition(sf::Vector2f{ 20.0f, 20.f });
 }
 
 
