@@ -1,8 +1,10 @@
 #include "Button1.h"
 
 
-Button1::Button1(sf::Vector2f position)
+Button1::Button1(Type type, std::string character, sf::Vector2f position) :value(0)
 {
+	if (type == Type::Number) value = stoi(character);
+	else sText = character;
 	setDefaultSize();
 	rectangle.setSize(defaultSize);
 	rectangle.setPosition(position);
@@ -10,8 +12,10 @@ Button1::Button1(sf::Vector2f position)
 	rectangle.setTexture(&buttonTexture);
 }
 
-Button1::Button1(sf::Vector2f position, sf::Vector2f size)
+Button1::Button1(Type type, std::string character, sf::Vector2f position, sf::Vector2f size) :value(0)
 {
+	if (type == Type::Number) value = stoi(character);
+	else sText = character;
 	rectangle.setSize(size);
 	rectangle.setPosition(position);
 	setPlusButtonTexture();

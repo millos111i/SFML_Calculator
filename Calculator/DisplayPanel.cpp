@@ -19,11 +19,10 @@ DisplayPanel::~DisplayPanel()
 {
 }
 
-void DisplayPanel::addValue(std::string value)
+void DisplayPanel::addValue(std::string value, Type type)
 {
 	int length;
-	int iValue = stoi(value);
-	if (iValue >= 48 && iValue <= 57) {
+	if (type == Type::Number) {
 		std::string separator{ "." };
 		int position = value.find(separator);
 		if (position != -1) length = value.length() - position;

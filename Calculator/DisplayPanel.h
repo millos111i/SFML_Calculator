@@ -1,11 +1,14 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Button1.h"
+#include <string>
+
 class DisplayPanel : public sf::Drawable, public sf::Transformable
 {
 public:
 	DisplayPanel();
 	~DisplayPanel();
-	void addValue(std::string value);
+	void addValue(std::string value, Type type);
 	void reset();
 private:
 	sf::RectangleShape rectangle;
