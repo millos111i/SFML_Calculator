@@ -2,7 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
-class Button1 : public sf::Drawable
+class Button1 : public sf::Drawable, public sf::Transformable
 {
 public:
 	Button1(sf::Vector2f position);

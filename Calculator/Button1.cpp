@@ -30,14 +30,15 @@ int Button1::getValue()
 
 void Button1::getCustomButtonProperties()
 {
-	sf::Vector2f buttonSize(100, 100);
-	rectangle.setSize(buttonSize);
+	rectangle.setSize(sf::Vector2f{100, 100});
 }
 
 void Button1::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
+	states.transform *= getTransform();
 	target.draw(rectangle);
 }
+
 
 sf::FloatRect Button1::getRect() const
 {
