@@ -23,6 +23,11 @@ Button1::~Button1()
 {
 }
 
+int Button1::getValue()
+{
+	return value;
+}
+
 void Button1::getCustomButtonProperties()
 {
 	sf::Vector2f buttonSize(100, 100);
@@ -32,4 +37,12 @@ void Button1::getCustomButtonProperties()
 void Button1::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(rectangle);
+}
+
+sf::FloatRect Button1::getRect() const
+{
+	sf::FloatRect rect = rectangle.getGlobalBounds();
+	rect.top = rectangle.getPosition().y;
+	rect.left = rectangle.getPosition().x;
+	return rect;
 }

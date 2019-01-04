@@ -4,6 +4,7 @@
 
 AppController::~AppController()
 {
+	delete button;
 }
 
 void AppController::run()
