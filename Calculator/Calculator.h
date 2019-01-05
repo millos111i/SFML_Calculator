@@ -7,6 +7,7 @@ class Calculator :public sf::Drawable
 public:
 	Calculator(sf::RenderWindow *window);
 	~Calculator();
+	void update();
 private:
 	sf::RenderWindow *myWindow;
 	DisplayPanel myDisplay;

@@ -15,7 +15,7 @@ public:
 	int getValue();
 	sf::FloatRect getRect() const;
 	void sellect();
-	void deselcted();
+	void deselct();
 private:
 	sf::RectangleShape rectangle;
 	sf::Texture buttonTexture;

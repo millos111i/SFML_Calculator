@@ -49,11 +49,11 @@ sf::FloatRect Button1::getRect() const
 
 void Button1::sellect()
 {
-	rectangle.setOutlineThickness(2);
-	rectangle.setOutlineColor(sf::Color::Black);
+	rectangle.setOutlineThickness(1);
+	rectangle.setOutlineColor(sf::Color::Yellow);
 }
 
-void Button1::deselcted()
+void Button1::deselct()
 {
-	rectangle.setOutlineColor(sf::Color::White);
+	rectangle.setOutlineThickness(0);
 }

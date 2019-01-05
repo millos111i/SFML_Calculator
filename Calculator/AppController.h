@@ -1,8 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "Button1.h"
 #include "Calculator.h"
-#include "DisplayPanel.h"
 
 class AppController 
 {
@@ -13,7 +11,7 @@ public:
 private:
 	sf::RenderWindow window;
 	void render();
+	void update();
 	Calculator myCalculator;
-	DisplayPanel myDisplay;
 };
 

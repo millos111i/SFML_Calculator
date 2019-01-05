@@ -15,6 +15,7 @@ void AppController::run()
 		{
 			if (evnt.type == sf::Event::Closed)	window.close();
 		}
+		update();
 		render();
 	}
 }
@@ -24,4 +25,9 @@ void AppController::render()
 	window.clear();
 	window.draw(myCalculator);
 	window.display();
+}
+
+void AppController::update()
+{
+	myCalculator.update();
 }
