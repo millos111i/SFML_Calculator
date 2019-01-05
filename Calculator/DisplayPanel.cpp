@@ -8,10 +8,10 @@ DisplayPanel::DisplayPanel()
 	rectangle.setFillColor(sf::Color::White);
 	font.loadFromFile("arial.ttf");
 	text.setFont(font);
-	text.setString(std::string{ "cokolwiek" });
+	text.setString(std::string{ "0" });
 	text.setFillColor(sf::Color::Black);
 	text.setCharacterSize(30);
-	text.setPosition(sf::Vector2f{ 20.0f, 20.f });
+	text.setPosition(sf::Vector2f{ 10.0f, 5.f });
 }
 
 
