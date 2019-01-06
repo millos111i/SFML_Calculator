@@ -8,7 +8,7 @@ class DisplayPanel : public sf::Drawable, public sf::Transformable
 public:
 	DisplayPanel();
 	~DisplayPanel();
-	void addValue(std::string value, Type type);
+	void addValue(std::string value, Type type = Type::Number);
 	void reset();
 private:
 	sf::RectangleShape rectangle;

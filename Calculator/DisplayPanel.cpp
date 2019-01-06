@@ -10,8 +10,8 @@ DisplayPanel::DisplayPanel()
 	text.setFont(font);
 	text.setString(std::string{ "0" });
 	text.setFillColor(sf::Color::Black);
-	text.setCharacterSize(30);
-	text.setPosition(sf::Vector2f{ 10.0f, 5.f });
+	text.setCharacterSize(24);
+	text.setPosition(sf::Vector2f{ 460.0f, 5.f });
 }
 
 
@@ -21,7 +21,7 @@ DisplayPanel::~DisplayPanel()
 
 void DisplayPanel::addValue(std::string value, Type type)
 {
-	int length;
+	int length = 0;
 	if (type == Type::Number) {
 		std::string separator{ "." };
 		int position = value.find(separator);
@@ -29,14 +29,14 @@ void DisplayPanel::addValue(std::string value, Type type)
 	}
 	strText.append(value);
 	text.setString(strText);
-	text.move(sf::Vector2f{ -14.f - (length*12.f), 0.f });
+	text.move(sf::Vector2f{ -13.f - (length*2.f), 0.f });
 }
 
 void DisplayPanel::reset()
 {
 	strText = "";
 	text.setString(strText);
-	text.setPosition(sf::Vector2f{ 130.f,-5.f });
+	text.setPosition(sf::Vector2f{ 460.0f, 5.f });
 }
 
 void DisplayPanel::draw(sf::RenderTarget & target, sf::RenderStates states) const

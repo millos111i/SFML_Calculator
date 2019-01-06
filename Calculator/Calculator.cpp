@@ -2,7 +2,7 @@
 
 
 
-Calculator::Calculator(sf::RenderWindow *window): myWindow(window)
+Calculator::Calculator(sf::RenderWindow *window): myWindow(window), comma(false), currentType(Type::None), value(0.0f)
 {
 	myDisplay.setPosition(sf::Vector2f{ 2, 2 });
 
@@ -36,7 +36,7 @@ Calculator::Calculator(sf::RenderWindow *window): myWindow(window)
 	myButtons[22] = new Button1(Type::Number, std::string{ "7" }, sf::Vector2f{ 218, 166 }, std::string{ "img/num7.png" });
 	myButtons[23] = new Button1(Type::Number, std::string{ "8" }, sf::Vector2f{ 272, 166 }, std::string{ "img/num8.png" });
 	myButtons[24] = new Button1(Type::Number, std::string{ "9" }, sf::Vector2f{ 326, 166 }, std::string{ "img/num9.png" });
-	myButtons[25] = new Button1(Type::Operator, std::string{ "/" }, sf::Vector2f{ 380, 166 }, std::string{ "img/div.png" });
+	myButtons[25] = new Button1(Type::Division, std::string{ "/" }, sf::Vector2f{ 380, 166 }, std::string{ "img/div.png" });
 	myButtons[26] = new Button1(Type::Other, std::string{ "%" }, sf::Vector2f{ 434, 166 }, std::string{ "img/procent.png" });
 	//fourth row
 	myButtons[27]  = new Button1(Type::Other, std::string{ "f-e" }, sf::Vector2f{ 2, 208 }, std::string{ "img/f-e.png" });
@@ -46,7 +46,7 @@ Calculator::Calculator(sf::RenderWindow *window): myWindow(window)
 	myButtons[31] = new Button1(Type::Number, std::string{ "4" }, sf::Vector2f{ 218, 208 }, std::string{ "img/num4.png" });
 	myButtons[32] = new Button1(Type::Number, std::string{ "5" }, sf::Vector2f{ 272, 208 }, std::string{ "img/num5.png" });
 	myButtons[33] = new Button1(Type::Number, std::string{ "6" }, sf::Vector2f{ 326, 208 }, std::string{ "img/num6.png" });
-	myButtons[34] = new Button1(Type::Operator, std::string{ "*" }, sf::Vector2f{ 380, 208 }, std::string{ "img/multiply.png" });
+	myButtons[34] = new Button1(Type::Multiply, std::string{ "*" }, sf::Vector2f{ 380, 208 }, std::string{ "img/multiply.png" });
 	myButtons[35] = new Button1(Type::Other, std::string{ "1_x" }, sf::Vector2f{ 434, 208 }, std::string{ "img/1_x.png" });
 	//fifth row
 	myButtons[36] = new Button1(Type::Other, std::string{ "y_sqrt_x" }, sf::Vector2f{ 2, 250 }, std::string{ "img/y_sqrt_x.png" });
@@ -56,7 +56,7 @@ Calculator::Calculator(sf::RenderWindow *window): myWindow(window)
 	myButtons[40] = new Button1(Type::Number, std::string{ "1" }, sf::Vector2f{ 218, 250 }, std::string{ "img/num1.png" });
 	myButtons[41] = new Button1(Type::Number, std::string{ "2" }, sf::Vector2f{ 272, 250 }, std::string{ "img/num2.png" });
 	myButtons[42] = new Button1(Type::Number, std::string{ "3" }, sf::Vector2f{ 326, 250 }, std::string{ "img/num3.png" });
-	myButtons[43] = new Button1(Type::Operator, std::string{ "-" }, sf::Vector2f{ 380, 250 }, std::string{ "img/minus.png" });
+	myButtons[43] = new Button1(Type::Minus, std::string{ "-" }, sf::Vector2f{ 380, 250 }, std::string{ "img/minus.png" });
 	myButtons[44] = new Button1(Type::Equal, std::string{ "=" }, sf::Vector2f{ 52,82 }, sf::Vector2f{ 434, 250 }, std::string{ "img/equal.png" });
 	//last row
 	myButtons[45] = new Button1(Type::Ans, std::string{ "ans" }, sf::Vector2f{ 2, 292 }, std::string{ "img/ans.png" });
@@ -65,7 +65,7 @@ Calculator::Calculator(sf::RenderWindow *window): myWindow(window)
 	myButtons[48] = new Button1(Type::Other, std::string{ "log" }, sf::Vector2f{ 164, 292 }, std::string{ "img/log.png" });
 	myButtons[49] = new Button1(Type::Number, std::string{ "0" }, sf::Vector2f{ 106, 40 }, sf::Vector2f{ 218, 292 }, std::string{ "img/num0.png" });
 	myButtons[50] = new Button1(Type::Comma, std::string{ "," }, sf::Vector2f{ 326, 292 }, std::string{ "img/comma.png" });
-	myButtons[51] = new Button1(Type::Operator, std::string{ "+" }, sf::Vector2f{ 380, 292 }, std::string{ "img/plus.png" });
+	myButtons[51] = new Button1(Type::Plus, std::string{ "+" }, sf::Vector2f{ 380, 292 }, std::string{ "img/plus.png" });
 }
 
 
@@ -97,4 +97,85 @@ void Calculator::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(*myButtons[i]);
 	}
 	target.draw(myDisplay);
+}
+
+void Calculator::eventHandler(sf::Event & evnt)
+{
+	if (evnt.type == sf::Event::MouseButtonPressed) {
+		Type type = sellectedButton->getType();
+		if (sellectedButton) {
+			switch (type)
+			{
+			case(Type::Number): {
+				currentType = Type::Number;
+				if (maxAmountOfNumbers < 32) {
+					maxAmountOfNumbers++;
+					int number = sellectedButton->getValue();
+					myDisplay.addValue(std::to_string(number));
+					if (comma) {
+						value = value + number * 0.1 * count;
+						count = count * 0.1f;
+					}
+					else{
+						value = value * 10 + number;
+					}
+				}
+				break; 
+			}
+			case(Type::Plus): {
+					myDisplay.addValue(sellectedButton->sText, Type::Plus);
+					
+				break;
+			}
+			case(Type::Minus): {
+				//if (myComputer.getSide() == Side::LEFT && myComputer.emptyLS()) {
+				//	myComputer.addNumber(0);
+				//	myDisplay.addValue(std::to_string(0));
+				//	myComputer.setOperator(type);
+				//	myComputer.setSide(Side::RIGHT);
+				//}
+				//else {
+				//	myComputer.setSide(Side::RIGHT);
+				//	myComputer.setOperator(type);
+				//	myComputer.calculate();
+				//}
+				//myDisplay.addValue(sellectedButton->sText, Type::Minus);
+				break;
+			}
+			case(Type::Multiply): {
+
+				myDisplay.addValue(sellectedButton->sText, Type::Multiply);
+				break;
+			}
+			case(Type::Division): {
+
+				myDisplay.addValue(sellectedButton->sText, Type::Division);
+				break;
+			}
+			case(Type::Comma): {
+				comma = true;
+				if (currentType == Type::None){
+					std::string temp = "0";
+					temp.append(sellectedButton->sText);
+					myDisplay.addValue(temp, Type::Comma); 
+					currentType = Type::Number;
+				}
+				else {
+					myDisplay.addValue(sellectedButton->sText, Type::Comma);
+				}
+				break;
+			}
+			case(Type::Equal): {
+				//myComputer.calculate();
+				//myDisplay.reset();
+				//std::string result = std::to_string(myComputer.getResult());
+				//if (result.size() > 1 && result[0] == '0') result.erase(0, 1);
+				//myDisplay.addValue(result);
+				break;
+			}
+			default:
+				break;
+			}
+		}
+	}
 }

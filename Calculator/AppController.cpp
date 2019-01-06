@@ -14,6 +14,7 @@ void AppController::run()
 		while (window.pollEvent(evnt))
 		{
 			if (evnt.type == sf::Event::Closed)	window.close();
+			myCalculator.eventHandler(evnt);
 		}
 		update();
 		render();

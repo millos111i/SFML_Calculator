@@ -4,17 +4,17 @@
 Button1::Button1(Type type, std::string character, sf::Vector2f size, sf::Vector2f position, std::string path) :value(0), type(type)
 {
 	if (type == Type::Number) value = stoi(character);
-	else sText = character;
+	else sText.append(character);
 	rectangle.setSize(size);
 	rectangle.setPosition(position);
 	buttonTexture.loadFromFile(path);
 	rectangle.setTexture(&buttonTexture);
 }
 
-Button1::Button1(Type type, std::string character, sf::Vector2f position, std::string path)
+Button1::Button1(Type type, std::string character, sf::Vector2f position, std::string path) :type(type)
 {
 	if (type == Type::Number) value = stoi(character);
-	else sText = character;
+	else sText.append(character);
 	rectangle.setSize(sf::Vector2f{ 52,40 });
 	rectangle.setPosition(position);
 	buttonTexture.loadFromFile(path);
@@ -56,4 +56,9 @@ void Button1::sellect()
 void Button1::deselct()
 {
 	rectangle.setOutlineThickness(0);
+}
+
+Type Button1::getType()
+{
+	return type;
 }
