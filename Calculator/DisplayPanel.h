@@ -10,9 +10,9 @@ public:
 	~DisplayPanel();
 	void addValue(std::string value, Type type = Type::Number);
 	void reset();
+	std::string strText;
 private:
 	sf::RectangleShape rectangle;
-	std::string strText;
 	sf::Text text;
 	sf::Font font;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;

@@ -3,6 +3,7 @@
 #include "Button1.h"
 #include "DisplayPanel.h"
 #include "Computer.h"
+#include<iostream>
 
 class Calculator :public sf::Drawable
 {
@@ -24,5 +25,6 @@ private:
 	bool comma;
 	float value;
 	float count = 1;
+	void operatorButtonOnClick(Type type);
 };
 

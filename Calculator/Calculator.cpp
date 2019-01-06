@@ -99,6 +99,34 @@ void Calculator::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	target.draw(myDisplay);
 }
 
+void Calculator::operatorButtonOnClick(Type type)
+{
+	maxAmountOfNumbers = 0;
+	count = 1;
+	if (currentType != type) {
+		if (currentType == Type::Comma) {
+			std::string temp = "";
+			temp.substr(0, myDisplay.strText.size() - 1);
+			temp.append(std::to_string((int)value));
+			myDisplay.reset();
+			myDisplay.addValue(temp, Type::Number);
+			std::cout << temp << std::endl;
+		}
+		else {
+			if (currentType == Type::None) {
+				std::string temp = "0";
+				temp.append(sellectedButton->sText);
+				myDisplay.addValue(temp, type);
+			}
+		}
+		//push
+		myComputer.PushNumber(value);
+		myComputer.PushOperator(type);
+		myDisplay.addValue(sellectedButton->sText, type);
+		currentType = type;
+	}
+}
+
 void Calculator::eventHandler(sf::Event & evnt)
 {
 	if (evnt.type == sf::Event::MouseButtonPressed) {
@@ -113,43 +141,29 @@ void Calculator::eventHandler(sf::Event & evnt)
 					int number = sellectedButton->getValue();
 					myDisplay.addValue(std::to_string(number));
 					if (comma) {
-						value = value + number * 0.1 * count;
+						value = value + (float)number * 0.1 * count;
 						count = count * 0.1f;
 					}
 					else{
-						value = value * 10 + number;
+						value = value * 10 + (float)number;
 					}
 				}
 				break; 
 			}
 			case(Type::Plus): {
-					myDisplay.addValue(sellectedButton->sText, Type::Plus);
-					
+				operatorButtonOnClick(type);
 				break;
 			}
 			case(Type::Minus): {
-				//if (myComputer.getSide() == Side::LEFT && myComputer.emptyLS()) {
-				//	myComputer.addNumber(0);
-				//	myDisplay.addValue(std::to_string(0));
-				//	myComputer.setOperator(type);
-				//	myComputer.setSide(Side::RIGHT);
-				//}
-				//else {
-				//	myComputer.setSide(Side::RIGHT);
-				//	myComputer.setOperator(type);
-				//	myComputer.calculate();
-				//}
-				//myDisplay.addValue(sellectedButton->sText, Type::Minus);
+				operatorButtonOnClick(type);
 				break;
 			}
 			case(Type::Multiply): {
-
-				myDisplay.addValue(sellectedButton->sText, Type::Multiply);
+				operatorButtonOnClick(type);
 				break;
 			}
 			case(Type::Division): {
-
-				myDisplay.addValue(sellectedButton->sText, Type::Division);
+				operatorButtonOnClick(type);
 				break;
 			}
 			case(Type::Comma): {
@@ -158,19 +172,15 @@ void Calculator::eventHandler(sf::Event & evnt)
 					std::string temp = "0";
 					temp.append(sellectedButton->sText);
 					myDisplay.addValue(temp, Type::Comma); 
-					currentType = Type::Number;
 				}
 				else {
 					myDisplay.addValue(sellectedButton->sText, Type::Comma);
 				}
+				currentType = Type::Comma;
 				break;
 			}
 			case(Type::Equal): {
-				//myComputer.calculate();
-				//myDisplay.reset();
-				//std::string result = std::to_string(myComputer.getResult());
-				//if (result.size() > 1 && result[0] == '0') result.erase(0, 1);
-				//myDisplay.addValue(result);
+
 				break;
 			}
 			default:

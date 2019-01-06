@@ -39,6 +39,7 @@ void DisplayPanel::reset()
 	text.setPosition(sf::Vector2f{ 460.0f, 5.f });
 }
 
+
 void DisplayPanel::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
